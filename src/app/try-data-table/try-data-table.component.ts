@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 
 import { ExpDataSource } from '../exp-data-source';
 
@@ -12,9 +13,12 @@ export class TryDataTableComponent implements OnInit {
 
   displayedColumns: string[] = ["indexValue", "itemName"];
 
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+
   constructor() { }
 
   ngOnInit() {
+    this.dataSource.paginator = this.paginator;
   }
 
 }

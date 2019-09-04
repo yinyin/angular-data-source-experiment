@@ -35,6 +35,7 @@ export class ExpDataSource extends WrappedDataSource<ExpDataItem> {
 			const aux = new ExpDataItem(idxVal);
 			result.push(aux);
 		}
+		this.setDataLength(this.maxItemCount);
 		return observableOf(result);
 	}
 }
