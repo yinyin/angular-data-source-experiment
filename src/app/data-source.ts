@@ -1,19 +1,18 @@
-import { DataSource, CollectionViewer } from '@angular/cdk/collections';
 import {
 	BehaviorSubject,
-	combineLatest,
 	merge,
 	Observable,
-	of as observableOf,
-	Subscription,
-	Subject,
+	Subscription
 } from 'rxjs';
+
+import { DataSource, CollectionViewer } from '@angular/cdk/collections';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
-import { map } from 'rxjs/operators';
 
 export abstract class WrappedDataSource<T> extends DataSource<T> {
 	private readonly renderData = new BehaviorSubject<T[]>([]);
+	private readonly loadingIndication = new BehaviorSubject<boolean>(false);
+	public readonly loadingIndicator = this.loadingIndication.asObservable();
 
 	private pageOffset: number = 0;
 	private pageSize: number = 0;
@@ -71,9 +70,12 @@ export abstract class WrappedDataSource<T> extends DataSource<T> {
 		if (this.pageSize === 0) {
 			return;
 		}
+		this.loadingIndication.next(true);
 		this.fetchData(this.pageOffset, this.pageSize, this.sortColumnIdentifier, this.sortAscend).subscribe(
-			(d) => this.renderData.next(d)
-		);
+			(d) => {
+				this.renderData.next(d);
+				this.loadingIndication.next(false);
+			});
 	}
 
 	private updatePageEventSubscription() {
