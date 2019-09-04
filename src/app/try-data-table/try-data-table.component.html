@@ -1,11 +1,19 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 	<ng-container matColumnDef="indexValue">
-		<th mat-header-cell *matHeaderCellDef> Idx. </th>
+		<th mat-header-cell *matHeaderCellDef mat-sort-header> Idx. </th>
 		<td mat-cell *matCellDef="let element"> {{element.indexValue}} </td>
 	</ng-container>
 	<ng-container matColumnDef="itemName">
-		<th mat-header-cell *matHeaderCellDef> Name </th>
+		<th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
 		<td mat-cell *matCellDef="let element"> {{element.itemName}} </td>
+	</ng-container>
+	<ng-container matColumnDef="sortColumnIdentifier">
+		<th mat-header-cell *matHeaderCellDef> Sort Col. </th>
+		<td mat-cell *matCellDef="let element"> {{element.sortColumnIdentifier}} </td>
+	</ng-container>
+	<ng-container matColumnDef="sortAscend">
+		<th mat-header-cell *matHeaderCellDef> Asc. </th>
+		<td mat-cell *matCellDef="let element"> {{element.sortAscend}} </td>
 	</ng-container>
 
 	<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

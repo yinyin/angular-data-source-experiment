@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,7 +20,7 @@ import { TryDataTableComponent } from './try-data-table/try-data-table.component
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    MatButtonModule, MatPaginatorModule, MatTableModule
+    MatButtonModule, MatPaginatorModule, MatSortModule, MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
